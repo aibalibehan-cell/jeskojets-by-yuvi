@@ -1,0 +1,19 @@
+{
+  "name": "mdebeauty-by-yuvi",
+  "version": "1.0.0",
+  "description": "Maison des elites — Luxury Skincare & High-Performance Formulas",
+  "main": "serve.js",
+  "type": "module",
+  "scripts": {
+    "start": "node serve.js"
+  },
+  "keywords": [
+    "mdebeauty",
+    "maison-des-elites",
+    "skincare",
+    "luxury",
+    "ecommerce"
+  ],
+  "author": "Yuvi",
+  "license": "MIT"
+}

@@ -1,0 +1,128 @@
+<!-- Built by Yuvi | ph no 7481889979 -->
+
+<style id="mde-anti-select">
+body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none; user-select: none; }
+</style>
+
+
+<script id="mde-local-router">
+(function() {
+  function getDepthPrefix() {
+    var p = window.location.pathname.replace(/\\/g, '/');
+    var mdeIdx = p.toLowerCase().lastIndexOf('/mdebeauty/');
+    if (mdeIdx !== -1) {
+      var rel = p.substring(mdeIdx + '/mdebeauty/'.length);
+      var parts = rel.split('/').filter(function(x) { return x.length > 0; });
+      var depth = Math.max(0, parts.length - 1);
+      var s = '';
+      for (var i = 0; i < depth; i++) s += '../';
+      return s;
+    }
+    return '';
+  }
+
+  function resolveUrl(href) {
+    if (!href) return href;
+    if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return href;
+
+    var hash = '';
+    var hIdx = href.indexOf('#');
+    if (hIdx !== -1) {
+      hash = href.substring(hIdx);
+      href = href.substring(0, hIdx);
+    }
+    var query = '';
+    var qIdx = href.indexOf('?');
+    if (qIdx !== -1) {
+      query = href.substring(qIdx);
+      href = href.substring(0, qIdx);
+    }
+
+    href = href.replace(/^https?:\/\/(?:www\.)?mdebeauty\.com/i, '');
+    href = href.replace(/^\/\/mdebeauty\.com/i, '');
+
+    var fileRootMatch = href.match(/^file:\/\/\/[a-zA-Z]:\/(?:users\/[^\/]+\/desktop\/mdebeauty\/)?(.*)/i);
+    if (fileRootMatch) {
+      href = fileRootMatch[1];
+    }
+
+    var clean = href.replace(/^\/+/, '');
+    var prefix = getDepthPrefix();
+
+    if (!clean || clean === '' || clean === 'index.html') return prefix + 'index.html' + query + hash;
+    if (clean === 'collections/products' || clean === 'collections/products/' || clean === 'collections/products.html' || clean === 'collections/products/index.html') return prefix + 'collections/products.html' + query + hash;
+    if (clean === 'collections/all' || clean === 'collections/all/' || clean === 'collections/all.html' || clean === 'collections/all/index.html') return prefix + 'collections/all.html' + query + hash;
+    if (clean === 'collections' || clean === 'collections/') return prefix + 'collections/products.html' + query + hash;
+    if (clean === 'search' || clean === 'search.html') return prefix + 'search.html' + query + hash;
+    if (clean === 'cart' || clean === 'cart.html') return prefix + 'cart.html' + query + hash;
+    if (clean === 'blogs/all' || clean === 'blogs/all/' || clean === 'blogs/all.html' || clean === 'blogs' || clean === 'blogs/') return prefix + 'blogs/all.html' + query + hash;
+
+    if (clean.startsWith('pages/')) {
+      var p = clean.replace(/^pages\//, '').replace(/\/index\.html$/, '').replace(/\/$/, '');
+      if (!p.endsWith('.html')) p += '.html';
+      return prefix + 'pages/' + p + query + hash;
+    }
+    if (clean.startsWith('products/')) {
+      var pr = clean.replace(/^products\//, '').replace(/\/index\.html$/, '').replace(/\/$/, '');
+      if (!pr.endsWith('.html')) pr += '.html';
+      return prefix + 'products/' + pr + query + hash;
+    }
+    if (clean.startsWith('blogs/all/')) {
+      var b = clean.replace(/^blogs\/all\//, '').replace(/\/index\.html$/, '').replace(/\/$/, '');
+      if (!b.endsWith('.html')) b += '.html';
+      return prefix + 'blogs/all/' + b + query + hash;
+    }
+
+    if (!clean.includes('.') && !clean.startsWith('http')) {
+      return prefix + clean + '.html' + query + hash;
+    }
+
+    return href + query + hash;
+  }
+
+  window.addEventListener('click', function(e) {
+    var el = e.target.closest('a') || e.target.closest('button') || e.target.closest('[data-href]');
+    if (!el) return;
+    var rawHref = el.getAttribute('href') || el.getAttribute('data-href');
+    if (!rawHref || rawHref === '#' || rawHref.startsWith('javascript:') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;
+
+    if (rawHref.startsWith('/') || rawHref.indexOf('mdebeauty.com') !== -1 || rawHref.indexOf('file:///') !== -1 || (!rawHref.startsWith('http') && !rawHref.includes('.'))) {
+      var target = resolveUrl(rawHref);
+      if (target && target !== rawHref) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = target;
+      }
+    }
+  }, true);
+
+  function fixLinks() {
+    var links = document.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      var h = a.getAttribute('href');
+      if (h && (h.startsWith('/') || h.indexOf('mdebeauty.com') !== -1 || h.indexOf('file:///') !== -1)) {
+        if (!h.startsWith('//cdn.') && !h.startsWith('/cdn/')) {
+          var res = resolveUrl(h);
+          if (res) a.setAttribute('href', res);
+        }
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fixLinks);
+  } else {
+    fixLinks();
+  }
+  setInterval(fixLinks, 1000);
+})();
+</script>
+
+
+
+
+
+
+
