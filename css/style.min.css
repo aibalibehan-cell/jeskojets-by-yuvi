@@ -4174,6 +4174,9 @@ html.lenis body {
 
 .me-home-product .me-product-ingredients {
     overflow: hidden;
+    clip-path: url(#circleRectProductIngredients);
+    -webkit-clip-path: url(#circleRectProductIngredients);
+    will-change: clip-path;
 }
 
 .me-product-ingredients {
@@ -4724,8 +4727,8 @@ html.lenis body {
 .me-home-review--anim .me-story.circle-section {
     background: linear-gradient(354.11deg, #E9E2D8 38.07%, #D8CDC0 54.81%, #E7DFD5 81.22%);
     margin-top: -100vh;
-    clip-path: url(style.min.css#circleRectStoryClip);
-    -webkit-clip-path: url(style.min.css#circleRectStoryClip);
+    clip-path: url(#circleRectStoryClip);
+    -webkit-clip-path: url(#circleRectStoryClip);
     will-change: clip-path;
 }
 

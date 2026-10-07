@@ -1,2 +1,24 @@
-window.lazyMedia=Array.from(document.querySelectorAll("img[data-lazy-load],source[data-lazy-load],img[data-src],source[data-src]"));let windowHeight=document.documentElement.clientHeight+400;window.addEventListener("scroll",lazyScroll),document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){lazyScrollCheck()},200)});function lazyScroll(){document.querySelectorAll("img[data-lazy-load],source[data-lazy-load],img[data-src],source[data-src]").length>0&&lazyScrollCheck()}function lazyScrollCheck(){window.lazyMedia.length>0&&window.lazyMedia.forEach((media,index)=>{let mediaPosition=media.getBoundingClientRect().top+pageYOffset;pageYOffset>mediaPosition-windowHeight&&media.dataset.src&&(media.closest(".header-menu-item.has-submenu")||(media.src=(media.dataset.src||"").trim(),media.removeAttribute("data-src"),media.tagName==="SOURCE"&&media.closest("video").load()),window.lazyMedia.splice(index,1))})}function reloadLazyLoad(){let reloadLazyMedia=document.querySelectorAll("img[data-lazy-load],source[data-lazy-load],img[data-src],source[data-src]");reloadLazyMedia.length>0&&reloadLazyMedia.forEach(media=>{if(media.dataset.src){let mediaPosition=media.getBoundingClientRect().top+pageYOffset;pageYOffset>mediaPosition-windowHeight&&(media.src=(media.dataset.src||"").trim(),media.removeAttribute("data-src"),media.tagName==="SOURCE"&&media.closest("video").load())}}),window.lazyMedia=Array.from(document.querySelectorAll("img[data-lazy-load],source[data-lazy-load],img[data-src],source[data-src]")),window.mediaPosition=[]}
-//# sourceMappingURL=/cdn/shop/t/2/assets/lazy-load.js.map?v=118527101907345911311743491612
+window.lazyMedia=Array.from(document.querySelectorAll("img[data-lazy-load],source[data-lazy-load],img[data-src],source[data-src]"));
+function lazyScrollCheck(){
+  var items = Array.from(document.querySelectorAll("img[data-lazy-load],source[data-lazy-load],img[data-src],source[data-src]"));
+  items.forEach(function(media){
+    if(media.dataset.src){
+      if(!media.src || media.src === window.location.href){
+        media.src = (media.dataset.src || "").trim();
+      }
+      media.removeAttribute("data-src");
+      if(media.tagName === "SOURCE" && media.closest("video")){
+        media.closest("video").load();
+      }
+    }
+  });
+}
+function lazyScroll(){ lazyScrollCheck(); }
+window.addEventListener("scroll", lazyScroll, { passive: true });
+document.addEventListener("DOMContentLoaded", function(){
+  lazyScrollCheck();
+  setTimeout(lazyScrollCheck, 200);
+  setTimeout(lazyScrollCheck, 1000);
+});
+lazyScrollCheck();
+function reloadLazyLoad(){ lazyScrollCheck(); }
