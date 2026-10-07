@@ -509,14 +509,17 @@ img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-
 (function() {
   function getDepthPrefix() {
     var p = window.location.pathname.replace(/\\/g, '/');
-    var mdeIdx = p.toLowerCase().lastIndexOf('/mdebeauty/');
-    if (mdeIdx !== -1) {
-      var rel = p.substring(mdeIdx + '/mdebeauty/'.length);
-      var parts = rel.split('/').filter(function(x) { return x.length > 0; });
-      var depth = Math.max(0, parts.length - 1);
-      var s = '';
-      for (var i = 0; i < depth; i++) s += '../';
-      return s;
+    var known = ['/pages/', '/products/', '/blogs/', '/collections/', '/account/', '/cart/', '/search/'];
+    for (var k = 0; k < known.length; k++) {
+      var idx = p.lastIndexOf(known[k]);
+      if (idx !== -1) {
+        var sub = p.substring(idx + 1);
+        var segs = sub.split('/').filter(function(x) { return x.length > 0; });
+        var depth = Math.max(0, segs.length - 1);
+        var s = '';
+        for (var i = 0; i < depth; i++) s += '../';
+        return s;
+      }
     }
     return '';
   }
@@ -541,15 +544,17 @@ img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-
     href = href.replace(/^https?:\/\/(?:www\.)?mdebeauty\.com/i, '');
     href = href.replace(/^\/\/mdebeauty\.com/i, '');
 
-    var fileRootMatch = href.match(/^file:\/\/\/[a-zA-Z]:\/(?:users\/[^\/]+\/desktop\/mdebeauty\/)?(.*)/i);
+    var fileRootMatch = href.match(/^file:\/\/\/[a-zA-Z]:\/(?:users\/[^\/]+\/desktop\/[^\/]+\/)?(.*)/i);
     if (fileRootMatch) {
       href = fileRootMatch[1];
     }
 
-    var clean = href.replace(/^\/+/, '');
+    var clean = href.replace(/^\/+/,'');
     var prefix = getDepthPrefix();
 
     if (!clean || clean === '' || clean === 'index.html') return prefix + 'index.html' + query + hash;
+    if (clean === 'account' || clean === 'account/' || clean === 'account/login' || clean === 'account/login.html') return prefix + 'account/login.html' + query + hash;
+    if (clean === 'account/register' || clean === 'account/register.html') return prefix + 'account/register.html' + query + hash;
     if (clean === 'collections/products' || clean === 'collections/products/' || clean === 'collections/products.html' || clean === 'collections/products/index.html') return prefix + 'collections/products.html' + query + hash;
     if (clean === 'collections/all' || clean === 'collections/all/' || clean === 'collections/all.html' || clean === 'collections/all/index.html') return prefix + 'collections/all.html' + query + hash;
     if (clean === 'collections' || clean === 'collections/') return prefix + 'collections/products.html' + query + hash;
@@ -730,7 +735,7 @@ img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-
         
 
         
-          <a href="/account">Account</a>
+          <a href="../../account/login.html">Account</a>
         
 
         <a data-header-cart-count href="#cart-modal-empty" class="me-header-cart --mobile">Cart</a>
@@ -768,7 +773,7 @@ img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-
           <a href="javascript:void(0);" class="search-toggle">Search</a>
         
         
-          <a href="/account">My Account</a>
+          <a href="../../account/login.html">My Account</a>
         
 
         

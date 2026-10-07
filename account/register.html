@@ -1,128 +1,144 @@
 <!-- Built by Yuvi | ph no 7481889979 -->
-
-<style id="mde-anti-select">
-body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-img { -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none; user-select: none; }
-</style>
-
-
-<script id="mde-local-router">
-(function() {
-  function getDepthPrefix() {
-    var p = window.location.pathname.replace(/\\/g, '/');
-    var mdeIdx = p.toLowerCase().lastIndexOf('/mdebeauty/');
-    if (mdeIdx !== -1) {
-      var rel = p.substring(mdeIdx + '/mdebeauty/'.length);
-      var parts = rel.split('/').filter(function(x) { return x.length > 0; });
-      var depth = Math.max(0, parts.length - 1);
-      var s = '';
-      for (var i = 0; i < depth; i++) s += '../';
-      return s;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account – Maison des elites</title>
+  <link rel="shortcut icon" href="../cdn/shop/files/favicon.png?crop=center&amp;height=32&amp;v=1743510165&amp;width=32" type="image/x-icon">
+  <link rel="icon" href="../cdn/shop/files/favicon.png?crop=center&amp;height=32&amp;v=1743510165&amp;width=32" type="image/x-icon">
+  <link rel="preload" as="font" href="../cdn/shop/t/2/assets/FuturaPT-Book.woff2?v=157108239045657747131743508567" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="../cdn/shop/t/2/assets/FuturaPT-Light.woff2?v=11466" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" as="font" href="../cdn/shop/t/2/assets/BourbonSt-Regular.woff2?v=22817253164555123951743508567" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../cdn/shop/t/2/assets/fonts.css">
+  <link rel="stylesheet" href="../cdn/shop/t/2/assets/style.min.css">
+  <style>
+    body { background: #E7E1D7; color: #363636; margin: 0; font-family: "Futura PT Book", sans-serif; }
+    .me-header-static { position: relative; width: 100%; z-index: 10; padding: 24px 0; border-bottom: 1px solid rgba(183, 147, 110, 0.25); background: #E7E1D7; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { color: #765E44; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.2s; }
+    .nav-links a:hover { color: #997550; }
+    .brand-logo { font-family: "Bourbon St", sans-serif; font-size: 26px; color: #765E44; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; }
+    .header-right { display: flex; gap: 24px; align-items: center; }
+    .header-right a { color: #765E44; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .login-container { display: flex; min-height: calc(100vh - 85px); }
+    @media (max-width: 1080px) {
+      .login-container { flex-direction: column-reverse; }
+      .header-inner { padding: 0 20px; }
+      .nav-links { display: none; }
     }
-    return '';
-  }
+    .form-input-wrap { position: relative; margin-bottom: 24px; }
+    .form-input-wrap input { width: 100%; box-sizing: border-box; background: transparent; border: none; border-bottom: 1px solid #B7936E; padding: 14px 0; font-size: 16px; font-family: "Futura PT Book", sans-serif; color: #363636; text-transform: uppercase; outline: none; transition: border-color 0.2s; }
+    .form-input-wrap input:focus { border-bottom-color: #765E44; }
+    .pw-toggle-btn { position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #AA957F; padding: 6px; }
+    .login-footer-strip { background: #ded7cb; padding: 20px 40px; text-align: center; font-size: 13px; color: #8C7359; border-top: 1px solid rgba(183,147,110,0.2); }
+    .login-footer-strip a { color: #765E44; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="me-header-static">
+    <div class="header-inner">
+      <ul class="nav-links">
+        <li><a href="../pages/about-us.html">The Maison</a></li>
+        <li><a href="../blogs/all.html">Journal</a></li>
+        <li><a href="../pages/contact.html">Contact</a></li>
+        <li><a href="../collections/products.html">The Collection</a></li>
+      </ul>
+      <a href="../index.html" class="brand-logo">Maison des elites</a>
+      <div class="header-right">
+        <a href="../pages/consultation.html">Consultation</a>
+        <a href="login.html" style="font-weight: 600;">Account</a>
+        <a href="../cart.html">Cart</a>
+      </div>
+    </div>
+  </header>
 
-  function resolveUrl(href) {
-    if (!href) return href;
-    if (href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('mailto:') || href.startsWith('tel:')) return href;
+  <!-- Register Section -->
+  <main class="login login-container">
+    <div class="login-box">
+      <div class="breadcrumbs" style="margin-bottom: 30px;">
+        <a href="../index.html" style="color: #AA957F; text-decoration: none; font-size: 13px; text-transform: uppercase;">Home</a>
+        <span style="color: #AA957F; margin: 0 8px;">/</span>
+        <span style="color: #765E44; font-size: 13px; text-transform: uppercase;">Create Account</span>
+      </div>
 
-    var hash = '';
-    var hIdx = href.indexOf('#');
-    if (hIdx !== -1) {
-      hash = href.substring(hIdx);
-      href = href.substring(0, hIdx);
-    }
-    var query = '';
-    var qIdx = href.indexOf('?');
-    if (qIdx !== -1) {
-      query = href.substring(qIdx);
-      href = href.substring(0, qIdx);
-    }
+      <div class="login-content">
+        <div class="login-title">
+          <h1 style="margin: 0;">Register</h1>
+        </div>
+        <p class="login-text">Create an account for bespoke luxury and orders</p>
 
-    href = href.replace(/^https?:\/\/(?:www\.)?mdebeauty\.com/i, '');
-    href = href.replace(/^\/\/mdebeauty\.com/i, '');
+        <form class="login-form" id="create_customer" onsubmit="event.preventDefault(); alert('Account created successfully! Welcome to Maison des elites.'); window.location.href='login.html';">
+          <div class="form-input-wrap">
+            <input type="text" name="first_name" id="first_name" placeholder="FIRST NAME" required autocomplete="given-name">
+          </div>
+          <div class="form-input-wrap">
+            <input type="text" name="last_name" id="last_name" placeholder="LAST NAME" required autocomplete="family-name">
+          </div>
+          <div class="form-input-wrap">
+            <input type="email" name="email" id="register_email" placeholder="EMAIL ADDRESS" required autocomplete="email">
+          </div>
+          <div class="form-input-wrap">
+            <input type="password" name="password" id="register_password" placeholder="PASSWORD" required autocomplete="new-password">
+            <button type="button" class="pw-toggle-btn js-toggle-view" aria-label="Toggle password visibility">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
 
-    var fileRootMatch = href.match(/^file:\/\/\/[a-zA-Z]:\/(?:users\/[^\/]+\/desktop\/mdebeauty\/)?(.*)/i);
-    if (fileRootMatch) {
-      href = fileRootMatch[1];
-    }
+          <div style="margin-top: 10px; margin-bottom: 28px;">
+            <label style="display: flex; align-items: center; gap: 8px; color: #997550; font-size: 13px; cursor: pointer;">
+              <input type="checkbox" required style="accent-color: #AA957F;"> I agree to the <a href="../pages/terms-of-service.html" style="color: #765E44; text-decoration: underline;">Terms</a> and <a href="../pages/privacy-policy.html" style="color: #765E44; text-decoration: underline;">Privacy Policy</a>
+            </label>
+          </div>
 
-    var clean = href.replace(/^\/+/, '');
-    var prefix = getDepthPrefix();
+          <button type="submit" class="me-button" style="width: 100%; border: none; cursor: pointer; padding: 18px 0; background: #AA957F; color: #fff; text-transform: uppercase; font-family: 'Futura PT Book', sans-serif; letter-spacing: 0.1em; transition: background 0.3s;">
+            <span>Create Account</span>
+          </button>
+        </form>
 
-    if (!clean || clean === '' || clean === 'index.html') return prefix + 'index.html' + query + hash;
-    if (clean === 'collections/products' || clean === 'collections/products/' || clean === 'collections/products.html' || clean === 'collections/products/index.html') return prefix + 'collections/products.html' + query + hash;
-    if (clean === 'collections/all' || clean === 'collections/all/' || clean === 'collections/all.html' || clean === 'collections/all/index.html') return prefix + 'collections/all.html' + query + hash;
-    if (clean === 'collections' || clean === 'collections/') return prefix + 'collections/products.html' + query + hash;
-    if (clean === 'search' || clean === 'search.html') return prefix + 'search.html' + query + hash;
-    if (clean === 'cart' || clean === 'cart.html') return prefix + 'cart.html' + query + hash;
-    if (clean === 'blogs/all' || clean === 'blogs/all/' || clean === 'blogs/all.html' || clean === 'blogs' || clean === 'blogs/') return prefix + 'blogs/all.html' + query + hash;
+        <div class="login-or" style="margin: 32px 0 24px;">
+          <span>OR</span>
+        </div>
 
-    if (clean.startsWith('pages/')) {
-      var p = clean.replace(/^pages\//, '').replace(/\/index\.html$/, '').replace(/\/$/, '');
-      if (!p.endsWith('.html')) p += '.html';
-      return prefix + 'pages/' + p + query + hash;
-    }
-    if (clean.startsWith('products/')) {
-      var pr = clean.replace(/^products\//, '').replace(/\/index\.html$/, '').replace(/\/$/, '');
-      if (!pr.endsWith('.html')) pr += '.html';
-      return prefix + 'products/' + pr + query + hash;
-    }
-    if (clean.startsWith('blogs/all/')) {
-      var b = clean.replace(/^blogs\/all\//, '').replace(/\/index\.html$/, '').replace(/\/$/, '');
-      if (!b.endsWith('.html')) b += '.html';
-      return prefix + 'blogs/all/' + b + query + hash;
-    }
+        <div class="login-socials">
+          <a href="javascript:void(0);" onclick="alert('Google signup connected.');" aria-label="Sign up with Google">
+            <svg viewBox="0 0 24 24"><path d="M21.35 11.1h-9.17v2.98h5.27c-.23 1.21-.91 2.23-1.93 2.91v2.42h3.13c1.83-1.69 2.89-4.17 2.89-7.11 0-.68-.06-1.34-.19-2.2z" fill="#4285F4"/><path d="M12.18 20.5c2.61 0 4.8-.86 6.4-2.34l-3.13-2.42c-.87.58-1.98.92-3.27.92-2.52 0-4.65-1.7-5.41-4h-3.24v2.51c1.6 3.17 4.88 5.33 8.65 5.33z" fill="#34A853"/><path d="M6.77 12.66c-.2-.6-.31-1.24-.31-1.91 0-.67.11-1.31.31-1.91V6.33H3.53C2.88 7.62 2.5 9.07 2.5 10.75c0 1.68.38 3.13 1.03 4.42l3.24-2.51z" fill="#FBBC05"/><path d="M12.18 5.75c1.42 0 2.7.49 3.7 1.45l2.77-2.77C16.98 2.86 14.79 2 12.18 2 8.41 2 5.13 4.16 3.53 7.33l3.24 2.51c.76-2.3 2.89-4 5.41-4z" fill="#EA4335"/></svg>
+          </a>
+          <a href="javascript:void(0);" onclick="alert('Apple ID signup connected.');" aria-label="Sign up with Apple">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.66-.82 1.11-1.96.99-3.1-.96.04-2.13.65-2.82 1.45-.61.71-1.15 1.87-1.01 2.98 1.07.08 2.18-.51 2.84-1.33z"/></svg>
+          </a>
+        </div>
 
-    if (!clean.includes('.') && !clean.startsWith('http')) {
-      return prefix + clean + '.html' + query + hash;
-    }
+        <div class="login-subtitle">
+          Already have an account? <a href="login.html">Sign in</a>
+        </div>
+      </div>
+    </div>
 
-    return href + query + hash;
-  }
+    <div class="login-bg">
+      <img src="../cdn/shop/files/MDE-Studio-851_copy_c3846759-ccec-46f7-b993-ac6afa7f46d8.jpg" alt="Maison des elites luxury skincare" loading="eager" style="object-fit: cover; width: 100%; height: 100%;">
+    </div>
+  </main>
 
-  window.addEventListener('click', function(e) {
-    var el = e.target.closest('a') || e.target.closest('button') || e.target.closest('[data-href]');
-    if (!el) return;
-    var rawHref = el.getAttribute('href') || el.getAttribute('data-href');
-    if (!rawHref || rawHref === '#' || rawHref.startsWith('javascript:') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;
+  <footer class="login-footer-strip">
+    &copy; 2026 Maison des elites. All rights reserved. &bull; <a href="../pages/privacy-policy.html">Privacy</a> &bull; <a href="../pages/terms-of-service.html">Terms</a> &bull; Built by Yuvi | ph no 7481889979
+  </footer>
 
-    if (rawHref.startsWith('/') || rawHref.indexOf('mdebeauty.com') !== -1 || rawHref.indexOf('file:///') !== -1 || (!rawHref.startsWith('http') && !rawHref.includes('.'))) {
-      var target = resolveUrl(rawHref);
-      if (target && target !== rawHref) {
-        e.preventDefault();
-        e.stopPropagation();
-        window.location.href = target;
+  <script>
+    // Password visibility toggle
+    document.querySelector('.js-toggle-view')?.addEventListener('click', function() {
+      const input = document.getElementById('register_password');
+      if (input.type === 'password') {
+        input.type = 'text';
+        this.classList.add('active');
+      } else {
+        input.type = 'password';
+        this.classList.remove('active');
       }
-    }
-  }, true);
-
-  function fixLinks() {
-    var links = document.querySelectorAll('a[href]');
-    for (var i = 0; i < links.length; i++) {
-      var a = links[i];
-      var h = a.getAttribute('href');
-      if (h && (h.startsWith('/') || h.indexOf('mdebeauty.com') !== -1 || h.indexOf('file:///') !== -1)) {
-        if (!h.startsWith('//cdn.') && !h.startsWith('/cdn/')) {
-          var res = resolveUrl(h);
-          if (res) a.setAttribute('href', res);
-        }
-      }
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', fixLinks);
-  } else {
-    fixLinks();
-  }
-  setInterval(fixLinks, 1000);
-})();
-</script>
-
-
-
-
-
-
-
+    });
+  </script>
+</body>
+</html>
